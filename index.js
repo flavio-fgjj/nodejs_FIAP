@@ -28,7 +28,7 @@ const schema = new mongoose.Schema({
     phone: { type: String, required: true },
     username: { type: String, required: true },
     password: { type: String, required: true },
-    date: {type: Date, default:now }
+    date: {type: Date, defaul: Date.now() }
 })
 
 const Client = mongoose.model('Client', schema)
@@ -45,6 +45,23 @@ app.get('/', (req,res) => {
             payload: result
         })
     })
+})
+
+app.post('/', (req,res) => {
+    const client = new Client(req.body)
+
+    client.save()
+        .then((result) => {
+            res.status(201).send({
+                output: 'Cadastro efetuado', 
+                payload: result
+            })
+        })
+        .catch((err) => {
+            res.status(500).send({
+                output: `Erro ao cadastrar -> ${err}`
+            })
+        })
 })
 
 app.get('/', (req,res,next) => {
