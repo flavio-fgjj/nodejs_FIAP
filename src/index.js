@@ -20,8 +20,8 @@ app.use(helmet())
 app.use(morgan('combined'))
 
 mongoose.connect(config.dbPath, {
-    useNewUrlParser:true,
-    useUnifiedTopology:true
+  useNewUrlParser:true,
+  useUnifiedTopology:true
 })
 
 app.use('/client', routeClient)
