@@ -27,4 +27,4 @@ mongoose.connect(config.dbPath, {
 app.use('/client', routeClient)
 app.use(notFound)
 
-app.listen(process.env.PORT || 3000, () => console.log('API rodando na porta 3001'))
+app.listen(process.env.PORT || 3000, () => console.log(`Servidor on-line! Porta: ${process.env.PORT || 3000}`))

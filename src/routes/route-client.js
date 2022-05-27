@@ -20,7 +20,7 @@ route.get('/', (req,res) => {
         })
     }
 
-    return result.status(200).send({
+    return res.status(200).send({
       output: 'OK',
       payload: result
     })

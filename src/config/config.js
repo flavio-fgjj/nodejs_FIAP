@@ -3,7 +3,7 @@ const config = () => {
     jwtSecret:'sss',
     jwtExpires:'2d',
     salt:10,
-    dbPath:'mongodb+srv://edilson:Alunos123@projetobanco.syyui.mongodb.net/dbinfra?retryWrites=true&w=majority'
+    dbPath:'mongodb://admin:Mudar1q2w3e@localhost:27017'
   }
 }
 module.exports = config();
