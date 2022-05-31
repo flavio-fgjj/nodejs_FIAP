@@ -1,9 +1,11 @@
+require('dotenv').config()
+
 const config = () => {
   return{
     jwtSecret:'sss',
     jwtExpires:'2d',
     salt:10,
-    dbPath:'mongodb://admin:Mudar1q2w3e@localhost:27017'
+    dbPath: process.env.MONGO_PATH
   }
 }
 module.exports = config();

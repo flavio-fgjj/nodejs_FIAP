@@ -55,33 +55,7 @@ route.post('/', (req,res) => {
   })
 })
 
-route.post('/login', (req, res) => {
-  Client.findOne({
-    username: req.body.username, 
-  }, (err,result) => {
-    if(err) {
-      return res.status(500).send({ output: `Found error -> ${err}`})
-    }
 
-    if(!result) {
-      return res.status(400).send({ output: `User not found`})
-    }
-
-    bcrypt.compare(req.body.password, result.password, (err, same) => {
-      if(err) {
-        return res.status(500).send({ output: `Can't process your request -> ${err}`})
-      }
-      
-      if(!same) {
-        return res.status(400).send({ output: `Invalid credentials`})
-      }
-
-      const newToken = createToken(result._id, result.username, result.email)
-
-      return res.status(200).send({ output: 'User authenticated', token: newToken })
-    })
-  })
-})
 
 route.put('/:id', check, (req, res) => {
   Client.findByIdAndUpdate(
@@ -105,7 +79,7 @@ route.put('/:id', check, (req, res) => {
   );
 })
 
-route.delete('/:id', (req, res) => {
+route.delete('/:id', check, (req, res) => {
   Client.findByIdAndDelete(req.params.id, (err, data) => {
     if (err) {
       return res

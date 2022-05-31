@@ -10,6 +10,7 @@ const config = require('./config/config')
 const notFound = require('./middleware/mw-notFound')
 
 // routes
+const routeAuth = require('./routes/route-login')
 const routeClient = require('./routes/route-client')
 
 const app = express()
@@ -24,6 +25,7 @@ mongoose.connect(config.dbPath, {
   useUnifiedTopology:true
 })
 
+app.use('/login', routeAuth)
 app.use('/client', routeClient)
 app.use(notFound)
 
